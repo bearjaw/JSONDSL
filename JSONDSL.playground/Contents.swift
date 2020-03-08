@@ -117,15 +117,7 @@ let jsonString_expressible_by_array_literal = render(
         marty,
         array("owners", [
             doc
-        ]),
-        string("model", "Dolorian"),
-        bool("isNew", false),
-        integer("seats", 2),
-        marty,
-        array("owners", [
-            doc
-        ]),
-
+        ])
     ]
 )
 

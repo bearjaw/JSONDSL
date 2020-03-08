@@ -52,8 +52,24 @@ Produces the following `JSON` Object:
 }
 ```
 
-After callin the `render` function. Future iteration could also include a validator to make sure that one can only create valid `JSON` objects which is much safer than relying on just a simple String.
+After calling the `render` function. Future iteration could also include a validator to make sure that one can only create valid `JSON` objects which is much safer than relying on just a simple String.
+
+Making JSONObject conform to `ExpressibleByArrayLiteral` reduces clutter:
+
+```swift
+let jsonString_expressible_by_array_literal = render(
+    [
+        string("model", "Dolorian"),
+        bool("isNew", false),
+        integer("seats", 2),
+        marty,
+        array("owners", [
+            doc
+        ])
+    ]
+)
+```
 
 ## Why?
 
-This is just a quick fun project to explore free functions, DSLs, and composition. It can be quite useful in future iterations to generate test data and have it checked by a compiler instead of just strings. 
+This is just a quick fun project to explore free functions, DSLs, and composition. It can be quite useful in future iterations to generate test data and have it checked by a compiler instead of just strings.
