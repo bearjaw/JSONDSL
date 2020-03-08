@@ -1,7 +1,14 @@
 # JSONDSL
 
-Define and compose JSON with Swift enums. Just exploring the concepts of DSLs.
+Define and compose JSON with Swift enums. Just exploring the concepts of DSLs and pushing the boundaries of usefulness.
+This is just a playground to play around with and can be improved in many ways.
 
+## What's in this playground?
+
+This playground includes a single recursive `enum` and some free functions to define `JSON` objects entirely in Swift.
+A future iteration could parse the object definition into a dictionary `[String: Any]` and use `JSONSerialization` or an Encoder to create `JSON` files.
+
+Current state:
 
 ```swift
 let doc = object([
@@ -14,17 +21,15 @@ let marty = object("bestFriend",[
     .integer("dogs", 0)
 ])
 
-let jsonString = render(
-    object([
-        string("model", "Dolorian"),
-        bool("isNew", false),
-        integer("seats", 2),
-        marty,
-        array("owners", [
-            doc
-        ])
+object([
+    string("model", "Dolorian"),
+    bool("isNew", false),
+    integer("seats", 2),
+    marty,
+    array("owners", [
+        doc
     ])
-)
+])
 ```
 
 Produces the following `JSON` Object:
@@ -46,3 +51,9 @@ Produces the following `JSON` Object:
   ]
 }
 ```
+
+After callin the `render` function. Future iteration could also include a validator to make sure that one can only create valid `JSON` objects which is much safer than relying on just a simple String.
+
+## Why?
+
+This is just a quick fun project to explore free functions, DSLs, and composition. It can be quite useful in future iterations to generate test data and have it checked by a compiler instead of just strings. 
