@@ -99,3 +99,48 @@ func render(_ json: JSONObject) -> String {
     }
 
 }
+
+extension JSONObject: ExpressibleByArrayLiteral {
+
+    typealias ArrayLiteralElement = JSONObject
+
+    init(arrayLiteral elements: JSONObject...) {
+        self = .object(nil, elements)
+    }
+}
+
+let jsonString_expressible_by_array_literal = render(
+    [
+        string("model", "Dolorian"),
+        bool("isNew", false),
+        integer("seats", 2),
+        marty,
+        array("owners", [
+            doc
+        ]),
+        string("model", "Dolorian"),
+        bool("isNew", false),
+        integer("seats", 2),
+        marty,
+        array("owners", [
+            doc
+        ]),
+
+    ]
+)
+
+print(jsonString_expressible_by_array_literal)
+
+let test: (() -> JSONObject) = {
+    [
+        string("model", "Dolorian"),
+        bool("isNew", false),
+        integer("seats", 2),
+        marty,
+        array("owners", [
+            doc
+        ])
+    ]
+}
+
+print(render(test()))
